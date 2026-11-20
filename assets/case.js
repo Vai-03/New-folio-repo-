@@ -142,7 +142,7 @@
   root.className = "ask";
   root.innerHTML =
     '<button class="ask__fab" type="button" aria-expanded="false" aria-controls="chat-panel">' +
-    '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.5-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke-width="2.4"/></svg>' +
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2c.6 5.2 2.8 7.4 8 8-5.2.6-7.4 2.8-8 8-.6-5.2-2.8-7.4-8-8 5.2-.6 7.4-2.8 8-8z"/><path d="M19 15c.3 2.3 1.2 3.2 3.5 3.5-2.3.3-3.2 1.2-3.5 3.5-.3-2.3-1.2-3.2-3.5-3.5 2.3-.3 3.2-1.2 3.5-3.5z"/></svg>' +
     '<span class="ask__fab-label">Ask about my work</span></button>' +
     '<div class="ask__nudge" hidden>Ask me anything about Vaishnavi’s work</div>' +
     '<section class="ask__panel" id="chat-panel" role="dialog" aria-label="Chat with Vaishnavi’s assistant" hidden>' +
