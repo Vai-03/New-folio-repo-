@@ -659,6 +659,11 @@ h1, h2, h3, h4 { letter-spacing: -.03em; line-height: 1.04; font-weight: 600; }
 .portrait:hover .portrait__snap { transform: rotate(-3deg) scale(1.07) translateY(-4px); }
 @media (max-width: 639px) { .portrait__snap { right: -6px; width: 32%; bottom: 52px; } }
 
+/* Portrait: offset plate matches the photo only, never runs behind the caption */
+.portrait::before { inset: 14px -14px auto 14px; height: auto; aspect-ratio: 4 / 5; }
+.portrait figcaption { margin-top: 32px; }
+@media (max-width: 639px) { .portrait::before { inset: 10px -8px auto 10px; } .portrait figcaption { margin-top: 26px; } }
+
 /* ---------- Chat assistant ---------- */
 .ask { position: fixed; z-index: 45; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); font-family: var(--font-body, "DM Sans", system-ui, sans-serif); }
 .ask * { box-sizing: border-box; }
