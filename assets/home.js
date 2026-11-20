@@ -281,5 +281,47 @@
     applyRoute();
   }
 
+  /* ---------- Hero: variable-font headline that follows the cursor, glow, magnetic buttons ---------- */
+  (function () {
+    var hero = $(".hero"); if (!hero) return;
+    var chars = $$(".hero__title .c");
+    chars.forEach(function (c, i) { c.style.setProperty("--i", i); });
+    var fine = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+    if (reduce || !fine) return;
+    var mx = -1e4, my = -1e4, raf = 0, rects = [];
+    function measure() { rects = chars.map(function (c) { var r = c.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; }); }
+    function frame() {
+      raf = 0;
+      for (var i = 0; i < chars.length; i++) {
+        var dx = rects[i][0] - mx, dy = rects[i][1] - my, t = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 170);
+        chars[i].style.setProperty("--t", (t * t * (3 - 2 * t)).toFixed(3));
+      }
+    }
+    hero.addEventListener("pointermove", function (e) {
+      mx = e.clientX; my = e.clientY;
+      var b = hero.getBoundingClientRect();
+      hero.style.setProperty("--mx", (e.clientX - b.left) + "px"); hero.style.setProperty("--my", (e.clientY - b.top) + "px");
+      if (!raf) { measure(); raf = requestAnimationFrame(frame); }
+    });
+    hero.addEventListener("pointerleave", function () { mx = my = -1e4; if (!raf) raf = requestAnimationFrame(frame); });
+    $$(".hero__cta .btn, .badge").forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.translate = ((e.clientX - r.left - r.width / 2) * .18) + "px " + ((e.clientY - r.top - r.height / 2) * .28) + "px";
+      });
+      el.addEventListener("pointerleave", function () { el.style.translate = ""; });
+    });
+  })();
+
+  /* ---------- Scroll reveal ---------- */
+  (function () {
+    if (reduce || !("IntersectionObserver" in window)) return;
+    var els = $$(".section__head, .svc, .card, .passage, .note, .ledger li, .portrait, .contact > *");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function (el, i) { el.classList.add("rv"); el.style.setProperty("--d", ((i % 4) * 70) + "ms"); io.observe(el); });
+  })();
+
   syncCart();
 })();
