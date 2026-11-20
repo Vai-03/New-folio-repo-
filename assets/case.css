@@ -221,6 +221,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn--lg .arr { margin-left: 8px; display: inline-block; transition: transform .25s; }
 .btn--lg:hover .arr { transform: translate(3px, -3px); }
 
+
+/* Full case structure (reference): numbered sections, personas, journey, IA, table, solution */
+.cs h2, .pair h3, .approach h3, .journey h3, .persona h3 { font-weight: 600; letter-spacing: -.03em; }
+.pair--one { grid-template-columns: 1fr; }
+.solution__shot { margin: 26px 0 22px; aspect-ratio: 16 / 10; }
+.btn--line { background: var(--paper); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 6px; padding: 12px 18px; font-weight: 600; }
+.btn--line:hover { background: var(--accent-2); border-color: var(--accent-2); color: #fff; }
+.solution__shot + .btn--line { margin-bottom: 4px; }
+
+@media (max-width: 979px) { .case-body { grid-template-columns: minmax(0, 1fr); } }
+.case-body > div { min-width: 0; }
+.iamap { flex-wrap: wrap; }
+
 /*__CHAT__*/
 /* ---------- Chat assistant ---------- */
 .ask { position: fixed; z-index: 45; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); font-family: var(--font-body, "DM Sans", system-ui, sans-serif); }
